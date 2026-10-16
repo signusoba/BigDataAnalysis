@@ -42,6 +42,8 @@ The source repository excludes uploaded data, generated images, and model binari
 
 For a first recognition check, upload `data/letters/images/validation/DejaVuSans_00_00.png` from the prepared copy or ZIP (the synthetic letter `ا`, Alef). This is a development example, not new camera evidence. Do not resave development examples into a different training/test split.
 
+For access from a phone on another Wi-Fi network and a presentation guide explaining the architecture, data, and measured results, see [Phone demo and project explanation](docs/PHONE_DEMO_AND_EXPLANATION.md).
+
 A phone does not train the network. Training runs offline on the computer/server; the browser uploads a crop for inference. Phone access to a computer's local server requires an explicitly configured accessible address or hosting. Image-file camera capture depends on the device; live browser camera APIs generally require HTTPS. Start with desktop uploads and transferred phone photos for the classroom demonstration.
 
 ## Import the uploaded dataset
