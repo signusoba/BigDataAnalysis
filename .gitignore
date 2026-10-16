@@ -1,0 +1,14 @@
+.venv/
+.venv-*/
+.venv_old/
+.setup/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.DS_Store
+.env
+data/
+artifacts/
+dist/
+*.log
+*.egg-info/

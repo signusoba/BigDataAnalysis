@@ -1,0 +1,117 @@
+{
+  "selected_model": "mobilenet",
+  "data": {
+    "domain": "synthetic isolated printed Persian letters",
+    "counts": {
+      "train": 3840,
+      "validation": 640,
+      "test": 1280
+    },
+    "unique_image_hashes": 5760,
+    "source_counts": {
+      "synthetic_font": 5760
+    },
+    "manifests": [
+      {
+        "name": "data/letters/manifest.jsonl",
+        "sha256": "14b7bf4f1fead893cd8f3f33ec7fa43f71e4e870009a98b24b46dcb2b7fd25db"
+      }
+    ],
+    "font_families": {
+      "train": [
+        "Noto Naskh Arabic",
+        "Noto Nastaliq Urdu",
+        "Noto Sans Arabic"
+      ],
+      "validation": [
+        "DejaVu Sans"
+      ],
+      "test": [
+        "Noto Kufi Arabic"
+      ]
+    },
+    "split_policy": "Font families, source groups, and exact image hashes cannot cross splits."
+  },
+  "deployment_latency_ms": {
+    "median": 9.653119999939008,
+    "p95": 11.409912749968496,
+    "count": 64,
+    "split": "validation",
+    "device": "CPU",
+    "scope": "preprocessing + prediction + ranked label mapping + preview PNG encoding; excludes disk I/O, HTTP, and capture"
+  },
+  "models": {
+    "cnn": {
+      "validation": {
+        "accuracy": 0.4140625,
+        "macro_f1": 0.33650976758865525,
+        "count": 640,
+        "correct": 265,
+        "accuracy_ci95": [
+          0.37652506870919245,
+          0.45262541780734245
+        ]
+      },
+      "test": {
+        "accuracy": 0.2828125,
+        "macro_f1": 0.2525514999162392,
+        "count": 1280,
+        "correct": 362,
+        "accuracy_ci95": [
+          0.25881847881652376,
+          0.3081062406027041
+        ]
+      }
+    },
+    "hog": {
+      "validation": {
+        "accuracy": 0.69375,
+        "macro_f1": 0.6238784502203499,
+        "count": 640,
+        "correct": 444,
+        "accuracy_ci95": [
+          0.6569712863347533,
+          0.728216707700695
+        ]
+      },
+      "test": {
+        "accuracy": 0.403125,
+        "macro_f1": 0.34262933056750516,
+        "count": 1280,
+        "correct": 516,
+        "accuracy_ci95": [
+          0.3765812437185593,
+          0.43024848724541287
+        ]
+      }
+    },
+    "mobilenet": {
+      "validation": {
+        "accuracy": 0.934375,
+        "macro_f1": 0.9213443886653674,
+        "count": 640,
+        "correct": 598,
+        "accuracy_ci95": [
+          0.9124812228854735,
+          0.9510854089036771
+        ]
+      },
+      "test": {
+        "accuracy": 0.609375,
+        "macro_f1": 0.5299945220130519,
+        "count": 1280,
+        "correct": 780,
+        "accuracy_ci95": [
+          0.5823578060137393,
+          0.6357376590269372
+        ]
+      }
+    }
+  },
+  "artifact_sha256": {
+    "cnn": "4423eecd42240853d8e1da1b5fdb650e37599010224fe0364f7d4f5b078ab965",
+    "hog": "dd190f7b76cdf1122b2b61255653f00b46187dbbbf6dbdda49baeae2586859fa",
+    "mobilenet": "aa32dfe18f072f8e0d15cea17c2a23f4d5567516e662e489c3700f692b03d452"
+  },
+  "camera_test_status": "not_collected_or_evaluated"
+}
