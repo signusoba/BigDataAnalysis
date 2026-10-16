@@ -18,7 +18,9 @@ The development server uses loopback port 8000 by default. `NOOR_PORT` changes t
 
 ## Install a fresh copy
 
-Use Python **3.12** and the CPU package versions provided here. On Linux/macOS with Bash:
+For step-by-step Windows setup, selecting the VS Code interpreter, and the included F5 launch configuration, see [Run in VS Code](docs/RUN_IN_VSCODE.md). The complete ZIP includes the dataset and trained model needed for immediate recognition.
+
+Use Python **3.12** and the CPU package versions provided here. On Linux with Bash:
 
 ```bash
 bash scripts/setup.sh
@@ -26,7 +28,7 @@ source .venv/bin/activate
 bash scripts/run.sh
 ```
 
-The pinned `+cpu` PyTorch wheels target supported Linux/Windows machines. On macOS, install platform-compatible PyTorch/Torchvision versions instead; the included cloud environment is Linux x86-64. For Windows, create a Python 3.12 venv, activate `.venv\Scripts\Activate.ps1`, run `python -m pip install --require-hashes -r requirements.lock`, then `python -m uvicorn persian_ocr.api:app --host 127.0.0.1 --port 8000` from the repository root. The lock pins transitive dependencies and verifies artifact hashes; update it deliberately when changing dependencies.
+The pinned `+cpu` PyTorch wheels target supported Linux/Windows machines. On macOS, install platform-compatible PyTorch/Torchvision versions instead; the included cloud environment is Linux x86-64. On Windows, create the environment with `py -3.12 -m venv .venv`, install with `.\.venv\Scripts\python.exe -m pip install --require-hashes -r requirements.lock`, then run `.\.venv\Scripts\python.exe -m uvicorn persian_ocr.api:app --host 127.0.0.1 --port 8000` from the repository root. Direct interpreter commands work without activating a PowerShell script. The lock pins transitive dependencies and verifies artifact hashes; update it deliberately when changing dependencies.
 
 The source repository excludes uploaded data, generated images, and model binaries. The prepared instance and submission ZIP contain these artifacts. A fresh source-only checkout can still show the interface and alphabet; import data and train models using the steps below to enable the corresponding features.
 

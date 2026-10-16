@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def package(output: Path, include_data: bool = True) -> dict:
     paths = set()
-    for pattern in ["README.md", ".gitignore", "Makefile", "pyproject.toml", "requirements*.txt", "requirements.lock",
+    for pattern in ["README.md", ".gitignore", ".vscode/*.json", "Makefile", "pyproject.toml", "requirements*.txt", "requirements.lock",
                     "persian_ocr/*.py", "web/*", "scripts/*.py", "scripts/*.sh", "tests/*.py", "docs/**/*.md",
                     "docs/*.json", "docs/screenshots/*.png"]:
         paths.update(path for path in ROOT.glob(pattern) if path.is_file())

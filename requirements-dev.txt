@@ -1,3 +1,5 @@
 -r requirements.txt
 pytest==9.0.2
 httpx==0.28.1
+# Pin pytest's Windows terminal dependency so the shared lock is portable.
+colorama==0.4.6
