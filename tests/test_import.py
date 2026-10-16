@@ -42,7 +42,7 @@ def test_archive_import_is_repeatable(tmp_path):
     second = import_archive(archive, tmp_path / "output")
     assert first == second
     assert first["pages"] == 1
-    assert (tmp_path / "output/00001/fulltext_00001.txt").read_text() == "سلام"
+    assert (tmp_path / "output/00001/fulltext_00001.txt").read_text(encoding="utf-8") == "سلام"
 
 
 def test_import_preserves_existing_modified_files(tmp_path):

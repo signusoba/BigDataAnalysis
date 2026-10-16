@@ -28,7 +28,16 @@ source .venv/bin/activate
 bash scripts/run.sh
 ```
 
-The pinned `+cpu` PyTorch wheels target supported Linux/Windows machines. On macOS, install platform-compatible PyTorch/Torchvision versions instead; the included cloud environment is Linux x86-64. On Windows, create the environment with `py -3.12 -m venv .venv`, install with `.\.venv\Scripts\python.exe -m pip install --require-hashes -r requirements.lock`, then run `.\.venv\Scripts\python.exe -m uvicorn persian_ocr.api:app --host 127.0.0.1 --port 8000` from the repository root. Direct interpreter commands work without activating a PowerShell script. The lock pins transitive dependencies and verifies artifact hashes; update it deliberately when changing dependencies.
+The pinned `+cpu` PyTorch wheels target supported Linux/Windows machines. On macOS, install platform-compatible PyTorch/Torchvision versions instead; the included cloud environment is Linux x86-64.
+
+On Windows, install Python **3.12 x64**, then run these commands from the repository root:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1
+.\.venv\Scripts\python.exe -m uvicorn persian_ocr.api:app --host 127.0.0.1 --port 8000
+```
+
+The execution-policy option applies only to that process. Setup discovers Python 3.12, validates `.venv`, installs the hashed lock, and runs `pip check`; it does not install Python itself. If needed, append `-PythonExe "C:\path\to\Python312\python.exe"` to the setup command. Python 3.15 cannot use the pinned PyTorch wheels. If an incompatible `.venv` exists, preserve it under an unused backup name before rerunning setup; see [Run in VS Code](docs/RUN_IN_VSCODE.md). Direct interpreter commands work without activation. The lock pins transitive dependencies and verifies artifact hashes; update it deliberately when changing dependencies.
 
 The source repository excludes uploaded data, generated images, and model binaries. The prepared instance and submission ZIP contain these artifacts. A fresh source-only checkout can still show the interface and alphabet; import data and train models using the steps below to enable the corresponding features.
 

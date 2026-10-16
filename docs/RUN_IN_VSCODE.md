@@ -8,21 +8,33 @@ Download and extract `Noor-Persian-Letter-Lab.zip` from the project conversation
 
 The GitHub branch contains the source, but excludes datasets and trained model binaries. To use a GitHub checkout, copy `data/` and `artifacts/` from the complete ZIP into its project root. Otherwise the interface opens with recognition unavailable until a model is trained.
 
-Install Python **3.12, 64-bit**, VS Code, and Microsoft's **Python** extension. The project recommends the Python Debugger extension as well. Initial dependency installation needs Internet access and sufficient free space for PyTorch and the other packages. Inference runs on the CPU.
+Install Python **3.12, 64-bit** (x64 on Windows), VS Code, and Microsoft's **Python** extension. Python 3.15 is unsupported by the pinned PyTorch wheels; changing the project's version restriction will not make those wheels compatible. The project recommends the Python Debugger extension as well. Initial dependency installation needs Internet access and sufficient free space for PyTorch and the other packages. Inference runs on the CPU.
 
 ## Windows: VS Code PowerShell terminal
 
 Open **Terminal → New Terminal** in the project folder. Run these commands one at a time:
 
 ```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --require-hashes -r requirements.lock
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1
 .\.venv\Scripts\python.exe -m uvicorn persian_ocr.api:app --host 127.0.0.1 --port 8000
 ```
 
-These commands use the environment's Python directly, so PowerShell does not need permission to run an activation script. If `py` is unavailable, install Python 3.12 with its launcher, or replace the first command with the full path to the installed Python 3.12 executable. Do not create the environment with a different Python version.
+The setup script looks for Python 3.12 x64 in the usual installation folders, through `py -3.12`, and on `PATH`. It creates `.venv`, verifies the actual environment's version and architecture, installs the hashed lock, and runs `pip check`. It does not download or install Python. `-ExecutionPolicy Bypass` applies only to this PowerShell process; it does not change the saved execution policy. Activation is unnecessary.
 
-On **your computer**, open `http://127.0.0.1:8000` in a browser. Leave the terminal running while using the app. Press **Ctrl+C** in that terminal to stop it. On subsequent runs you only need the final command; dependency installation is a one-time step unless the lock changes.
+If Python is installed elsewhere, pass its executable explicitly (replace the example path with your installation):
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1 -PythonExe "C:\path\to\Python312\python.exe"
+```
+
+If `.venv` already uses another Python version, setup stops without modifying it. Close terminals and running processes that use that environment, preserve it with the command below, and rerun setup. Choose a different backup name if this one already exists. Do not create a new environment over an incompatible existing one.
+
+```powershell
+Rename-Item -LiteralPath .venv -NewName .venv-incompatible-backup
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1
+```
+
+On **your computer**, open `http://127.0.0.1:8000` in a browser. Leave the terminal running while using the app. Press **Ctrl+C** in that terminal to stop it. On subsequent runs you only need the `uvicorn` command; dependency installation is a one-time step unless the lock changes.
 
 ## Run using F5
 
